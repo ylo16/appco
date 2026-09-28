@@ -48,11 +48,12 @@ function ProjectionPanel({ startingValue }) {
       <div className="projection-controls">
         <label>
           Starting value
-          <input type="text" value={formatCurrency(startingValue)} readOnly />
+          <input aria-label="Starting value" type="text" value={formatCurrency(startingValue)} readOnly />
         </label>
         <label>
           Monthly contribution
           <input
+            aria-label="Monthly contribution"
             type="number"
             min="0"
             step="50"
@@ -63,6 +64,7 @@ function ProjectionPanel({ startingValue }) {
         <label>
           Expected annual return (%)
           <input
+            aria-label="Expected annual return percentage"
             type="number"
             step="0.1"
             value={annualReturnPct}
@@ -71,7 +73,15 @@ function ProjectionPanel({ startingValue }) {
         </label>
         <label>
           Years
-          <input type="number" min="1" max="50" step="1" value={years} onChange={updateYears} />
+          <input
+            aria-label="Projection years"
+            type="number"
+            min="1"
+            max="50"
+            step="1"
+            value={years}
+            onChange={updateYears}
+          />
         </label>
       </div>
 

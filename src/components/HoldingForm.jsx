@@ -23,10 +23,11 @@ function HoldingForm({ onAdd }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="holding-form" onSubmit={handleSubmit}>
       <label>
         Ticker
         <input
+          aria-label="Ticker"
           type="text"
           value={ticker}
           onChange={(event) => setTicker(event.target.value.toUpperCase())}
@@ -36,6 +37,7 @@ function HoldingForm({ onAdd }) {
       <label>
         Shares
         <input
+          aria-label="Shares"
           type="number"
           min="0"
           step="any"
@@ -47,6 +49,7 @@ function HoldingForm({ onAdd }) {
       <label>
         Purchase price
         <input
+          aria-label="Purchase price"
           type="number"
           min="0"
           step="any"
@@ -58,6 +61,7 @@ function HoldingForm({ onAdd }) {
       <label>
         Current price
         <input
+          aria-label="Current price"
           type="number"
           min="0"
           step="any"

@@ -1,3 +1,27 @@
+/* Shared palette and spacing tokens keep the dashboard calm and consistent. */
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #172b2a;
+  background: #f2f6f4;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --color-ink: #172b2a;
+  --color-muted: #637471;
+  --color-border: #dce6e2;
+  --color-surface: #ffffff;
+  --color-page: #f2f6f4;
+  --color-accent: #167d70;
+  --color-accent-hover: #10685e;
+  --color-positive: #16734f;
+  --color-negative: #b53d3d;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+}
+
 /* Use predictable sizing for every element. */
 *,
 *::before,
@@ -8,6 +32,12 @@
 /* Set a readable baseline and a light page background. */
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: #f7f8fa;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--color-page);
+}
+
+button,
+input {
+  font: inherit;
 }
