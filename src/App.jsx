@@ -2,11 +2,14 @@ import './App.css'
 import AllocationChart from './components/AllocationChart.jsx'
 import HoldingForm from './components/HoldingForm.jsx'
 import HoldingsTable from './components/HoldingsTable.jsx'
+import ProjectionPanel from './components/ProjectionPanel.jsx'
 import SummaryCards from './components/SummaryCards.jsx'
 import { useHoldings } from './hooks/useHoldings.js'
+import { portfolioTotals } from './utils/calculations.js'
 
 function App() {
   const { holdings, addHolding, removeHolding } = useHoldings()
+  const { totalValue } = portfolioTotals(holdings)
 
   return (
     <div>
@@ -33,6 +36,7 @@ function App() {
         </section>
         <section>
           <h2>Projection</h2>
+          <ProjectionPanel startingValue={totalValue} />
         </section>
       </main>
     </div>

@@ -1,8 +1,22 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
+const HOLDINGS_STORAGE_KEY = 'foliolens.holdings'
 
 export function useHoldings() {
-  // State is React's memory for values that should update the screen when they change.
-  const [holdings, setHoldings] = useState([])
+  const [holdings, setHoldings] = useState(() => {
+    // localStorage keeps holdings available when the browser session is reopened.
+    try {
+      const savedHoldings = localStorage.getItem(HOLDINGS_STORAGE_KEY)
+      return savedHoldings ? JSON.parse(savedHoldings) : []
+    } catch {
+      // Ignore corrupted stored JSON and let the app start with no holdings.
+      return []
+    }
+  })
+
+  useEffect(() => {
+    localStorage.setItem(HOLDINGS_STORAGE_KEY, JSON.stringify(holdings))
+  }, [holdings])
 
   function addHolding(holding) {
     const newHolding = { ...holding, id: crypto.randomUUID() }
