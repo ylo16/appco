@@ -1,9 +1,10 @@
 import './App.css'
 import HoldingForm from './components/HoldingForm.jsx'
+import HoldingsTable from './components/HoldingsTable.jsx'
 import { useHoldings } from './hooks/useHoldings.js'
 
 function App() {
-  const { holdings, addHolding } = useHoldings()
+  const { holdings, addHolding, removeHolding } = useHoldings()
 
   return (
     <div>
@@ -18,14 +19,7 @@ function App() {
         <section>
           <h2>Holdings</h2>
           <HoldingForm onAdd={addHolding} />
-          <ul>
-            {holdings.map((holding) => (
-              <li key={holding.id}>
-                {holding.ticker}: {holding.shares} shares, purchased at {holding.purchasePrice},
-                current price {holding.currentPrice}
-              </li>
-            ))}
-          </ul>
+          <HoldingsTable holdings={holdings} onRemove={removeHolding} />
         </section>
         <section>
           <h2>Summary</h2>
