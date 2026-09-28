@@ -34,6 +34,23 @@
   color: red;
 }
 
+.allocation-empty {
+  margin: 0;
+  color: #59636e;
+}
+
+.allocation-tooltip {
+  padding: 0.75rem;
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+}
+
+.allocation-tooltip p {
+  margin: 0.25rem 0 0;
+}
+
 @media (max-width: 900px) {
   .summary-cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));

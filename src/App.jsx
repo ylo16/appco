@@ -1,4 +1,5 @@
 import './App.css'
+import AllocationChart from './components/AllocationChart.jsx'
 import HoldingForm from './components/HoldingForm.jsx'
 import HoldingsTable from './components/HoldingsTable.jsx'
 import SummaryCards from './components/SummaryCards.jsx'
@@ -28,6 +29,7 @@ function App() {
         </section>
         <section>
           <h2>Allocation</h2>
+          <AllocationChart holdings={holdings} />
         </section>
         <section>
           <h2>Projection</h2>
