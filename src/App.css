@@ -1,9 +1,47 @@
 /* App-specific styles can be added here as the tracker grows. */
 
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.summary-card {
+  min-width: 0;
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+}
+
+.summary-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.summary-card p {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
 .gain {
   color: green;
 }
 
 .loss {
   color: red;
+}
+
+@media (max-width: 900px) {
+  .summary-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
 }

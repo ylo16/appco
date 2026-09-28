@@ -1,6 +1,7 @@
 import './App.css'
 import HoldingForm from './components/HoldingForm.jsx'
 import HoldingsTable from './components/HoldingsTable.jsx'
+import SummaryCards from './components/SummaryCards.jsx'
 import { useHoldings } from './hooks/useHoldings.js'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         </section>
         <section>
           <h2>Summary</h2>
+          <SummaryCards holdings={holdings} />
         </section>
         <section>
           <h2>Allocation</h2>
