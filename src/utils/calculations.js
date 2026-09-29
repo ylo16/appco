@@ -56,6 +56,11 @@ export function allocation(holdings) {
   }));
 }
 
+// Returns ticker allocations that exceed the requested portfolio concentration.
+export function concentrationWarnings(holdings, thresholdPct = 40) {
+  return allocation(holdings).filter(({ weightPct }) => weightPct > thresholdPct);
+}
+
 // Projects portfolio value at each year-end with monthly growth and end-of-month contributions.
 export function projectGrowth({ startingValue, monthlyContribution, annualReturnPct, years }) {
   const monthlyReturn = annualReturnPct / 100 / 12;

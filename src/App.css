@@ -49,6 +49,33 @@
   line-height: 1.3;
 }
 
+.insights-banner {
+  grid-column: 1 / -1;
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid;
+  border-radius: 8px;
+}
+
+.insights-banner p {
+  margin: 0;
+}
+
+.insights-banner p + p {
+  margin-top: var(--space-2);
+}
+
+.insights-warning {
+  color: #6e4c12;
+  background: #fff8e8;
+  border-color: #ead39e;
+}
+
+.insights-positive {
+  color: #185b42;
+  background: #eaf5ef;
+  border-color: #b9d9c8;
+}
+
 .holdings-panel,
 .projection-dashboard-panel {
   grid-column: 1 / -1;

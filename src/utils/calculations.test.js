@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   allocation,
+  concentrationWarnings,
   holdingCost,
   holdingGain,
   holdingReturnPct,
@@ -118,6 +119,41 @@ describe('allocation', () => {
       { ticker: 'XYZ', value: 200, weightPct: 200 / 22 },
     ]);
     expect(result.reduce((total, item) => total + item.weightPct, 0)).toBeCloseTo(100);
+  });
+});
+
+describe('concentrationWarnings', () => {
+  it('returns ticker allocations above the default threshold', () => {
+    const holdings = [
+      { ticker: 'AAPL', shares: 2, currentPrice: 310 },
+      { ticker: 'MSFT', shares: 1, currentPrice: 380 },
+    ];
+
+    expect(concentrationWarnings(holdings)).toEqual([
+      { ticker: 'AAPL', value: 620, weightPct: 620 / 1000 * 100 },
+    ]);
+  });
+
+  it('uses a custom threshold and excludes an allocation equal to it', () => {
+    const holdings = [
+      { ticker: 'AAA', shares: 6, currentPrice: 10 },
+      { ticker: 'BBB', shares: 4, currentPrice: 10 },
+    ];
+
+    expect(concentrationWarnings(holdings, 60)).toEqual([]);
+    expect(concentrationWarnings(holdings, 59)).toHaveLength(1);
+  });
+
+  it('combines duplicate ticker values when calculating portfolio weight', () => {
+    const holdings = [
+      { ticker: 'AAA', shares: 3, currentPrice: 10 },
+      { ticker: 'AAA', shares: 3, currentPrice: 10 },
+      { ticker: 'BBB', shares: 4, currentPrice: 10 },
+    ];
+
+    expect(concentrationWarnings(holdings)).toEqual([
+      { ticker: 'AAA', value: 60, weightPct: 60 },
+    ]);
   });
 });
 

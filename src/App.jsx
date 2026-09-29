@@ -2,6 +2,7 @@ import './App.css'
 import AllocationChart from './components/AllocationChart.jsx'
 import HoldingForm from './components/HoldingForm.jsx'
 import HoldingsTable from './components/HoldingsTable.jsx'
+import InsightsBanner from './components/InsightsBanner.jsx'
 import ProjectionPanel from './components/ProjectionPanel.jsx'
 import SummaryCards from './components/SummaryCards.jsx'
 import { useHoldings } from './hooks/useHoldings.js'
@@ -26,6 +27,7 @@ function App() {
           <HoldingForm onAdd={addHolding} />
           <HoldingsTable holdings={holdings} onRemove={removeHolding} />
         </section>
+        <InsightsBanner holdings={holdings} />
         <section className="dashboard-panel">
           <h2>Summary</h2>
           <SummaryCards holdings={holdings} />
