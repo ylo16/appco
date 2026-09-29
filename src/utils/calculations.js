@@ -71,3 +71,17 @@ export function projectGrowth({ startingValue, monthlyContribution, annualReturn
 
   return projection;
 }
+
+// Combines two positions in the same ticker at their weighted average cost.
+export function mergeHoldings(existing, incoming) {
+  const shares = existing.shares + incoming.shares;
+  const purchasePrice =
+    (existing.shares * existing.purchasePrice + incoming.shares * incoming.purchasePrice) / shares;
+
+  return {
+    ...existing,
+    shares,
+    purchasePrice,
+    currentPrice: incoming.currentPrice,
+  };
+}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { mergeHoldings } from '../utils/calculations.js'
 
 const HOLDINGS_STORAGE_KEY = 'foliolens.holdings'
 
@@ -20,7 +21,19 @@ export function useHoldings() {
 
   function addHolding(holding) {
     const newHolding = { ...holding, id: crypto.randomUUID() }
-    setHoldings((currentHoldings) => [...currentHoldings, newHolding])
+    setHoldings((currentHoldings) => {
+      const matchingIndex = currentHoldings.findIndex(
+        (current) => current.ticker.toUpperCase() === holding.ticker.toUpperCase(),
+      )
+
+      if (matchingIndex === -1) {
+        return [...currentHoldings, newHolding]
+      }
+
+      return currentHoldings.map((current, index) =>
+        index === matchingIndex ? mergeHoldings(current, newHolding) : current,
+      )
+    })
   }
 
   function removeHolding(id) {

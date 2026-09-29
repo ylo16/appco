@@ -5,6 +5,7 @@ import {
   holdingGain,
   holdingReturnPct,
   holdingValue,
+  mergeHoldings,
   portfolioTotals,
   projectGrowth,
 } from './calculations.js';
@@ -67,6 +68,34 @@ describe('portfolioTotals', () => {
       totalGain: 480,
       totalReturnPct: (480 / 1100) * 100,
     });
+  });
+});
+
+describe('mergeHoldings', () => {
+  it('combines shares and calculates the weighted average purchase price', () => {
+    const existing = {
+      id: 'existing-id',
+      ticker: 'ABC',
+      shares: 10,
+      purchasePrice: 100,
+      currentPrice: 120,
+    };
+    const incoming = {
+      ticker: 'ABC',
+      shares: 5,
+      purchasePrice: 130,
+      currentPrice: 140,
+    };
+
+    expect(mergeHoldings(existing, incoming)).toEqual({
+      id: 'existing-id',
+      ticker: 'ABC',
+      shares: 15,
+      purchasePrice: (10 * 100 + 5 * 130) / 15,
+      currentPrice: 140,
+    });
+    expect(existing.shares).toBe(10);
+    expect(incoming.shares).toBe(5);
   });
 });
 
